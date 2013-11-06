@@ -63,7 +63,7 @@ foreach( $archive_links as $link ) {
 		$article = array(
 			'url' => absUrl( $article_node->getAttribute( 'href' ), $blog_url ),
 			'title' => $article_node->getAttribute( 'title' ),
-			'cache_file' => $cache_file,
+			'archive_cache_file' => $cache_file,
 			'archive_name' => $link[ 'archive_name' ],
 			'archive_page' => $link[ 'page' ],
 			'archive_url' => $link[ 'url' ],
