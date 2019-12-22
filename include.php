@@ -1,6 +1,6 @@
 <?php
 
-$blog_url = 'http://phoenixrise.blog.cz';
+$blog_url = 'http://clamor.blog.cz';
 $blog_items_per_list_page = 15;
 
 $output_dir = __DIR__ . '/output';

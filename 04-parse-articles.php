@@ -66,6 +66,31 @@ foreach( $articles_links as $link ) {
 		if($category['url_key'] === "") die("ERROR: false detect category url_key\n");
 	}
 
+	$comments = array();
+
+	$commentNodes = $parser->getNodeList('//div[@id="komentare"]/div');
+	$x=0;
+	foreach( $commentNodes as $commentNode ) {
+		$commentText = $parser->getElementNode('./div[@class="commentText"]', $commentNode);
+		$commentNr = $parser->getElementNode('./div[@class="commentHeader"]/div[@class="commentNr"]', $commentNode);
+
+		$commentName = $parser->getTextContent('./div[@class="commentHeader"]//strong', $commentNr);
+		$commentNr = $parser->getElementNode('./div[@class="commentHeader"]/div[@class="commentNr"]', $commentNode);
+		$commentWeb = $parser->getElementNode('./div[@class="commentHeader"]//a[@title="Web"]/@href', $commentNode);
+		$commentMail = $parser->getElementNode('./div[@class="commentHeader"]//a[contains(@href,"mailto:")]/@href', $commentNode);
+
+var_dump($commentMail->textContent);
+		// $comment = array(
+		// 	'url' => absUrl( $commentNode->getAttribute( 'href' ), $blog_url ),
+		// 	'title' => $commentNode->getAttribute( 'title' ),
+		// 	'archive_cache_file' => $cache_file,
+		// 	'archive_name' => $link[ 'archive_name' ],
+		// 	'archive_page' => $link[ 'page' ],
+		// 	'archive_url' => $link[ 'url' ],
+		// );
+		// $comments[] = $comment;
+	}
+
 	$article = array(
 		'info' => $link,
 		'title' => $title,
@@ -76,7 +101,7 @@ foreach( $articles_links as $link ) {
 
 	$articles[] = $article;
 
-	//if($i>100) break;
+	if($i>10) break;
 
 	unset( $parser, $xpath, $doc );
 	echo "OK\n";

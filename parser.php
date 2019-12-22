@@ -10,8 +10,12 @@ class XPathParser {
 	}
 
 
-	public function getNodeList( $query ) {
-		return $this->doc->evaluate( $query );
+	public function getNodeList( $query, $context = NULL ) {
+		if( $context ) {
+			return $this->doc->evaluate( $query, $context );
+		} else {
+			return $this->doc->evaluate( $query );
+		}
 	}
 
 	public function getElementNode( $query, $context = NULL ) {
